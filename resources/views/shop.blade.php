@@ -5,7 +5,17 @@
 @endsection
 
 @section("pageContent")
-    <p>This is shop page</p>
+
+    @foreach($products as $singleProduct)
+
+        @if($singleProduct == "iPhone 14" || $singleProduct == "iPhone 13 pro")
+            <p> {{ $singleProduct }} - discount! </p>
+        @else
+            <p> {{ $singleProduct }} </p>
+        @endif
+    @endforeach
+
+
 @endsection
 
 
