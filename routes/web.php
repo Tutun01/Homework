@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view("/welcome", "welcome");
-
 Route::view("/about", "about");
 
-Route::view("/contact", "contact");
+Route::get("/welcome", [\App\Http\Controllers\HomepageController::class, 'index']);
+Route::get("/shop", [\App\Http\Controllers\ShopController::class, 'index']);
 
-Route::view("/shop", "shop");
+Route::get("/contact", [\App\Http\Controllers\ContactController::class, 'index']);
+//Route::view("/contact", "contact");
+
+
+Route::get("/admin/all-contacts", [\App\Http\Controllers\ContactController::class, "getAllContacts"]);
