@@ -6,13 +6,10 @@
 
 @section("pageContent")
 
-    @foreach($products as $singleProduct)
+    @foreach($products as $product)
+       <p>{{$product->name}}</p>
+       <p>{{$product->description}}</p>
 
-        @if($singleProduct == "iPhone 14" || $singleProduct == "iPhone 13 pro")
-            <p> {{ $singleProduct }} - discount! </p>
-        @else
-            <p> {{ $singleProduct }} </p>
-        @endif
     @endforeach
 
 
