@@ -6,9 +6,10 @@
 
 @section("pageContent")
 
+
     @foreach($products as $product)
-       <p>{{$product->name}}</p>
-       <p>{{$product->description}}</p>
+        <p> {{$product->name}} </p>
+       <p> {{$product->description}} </p>
 
     @endforeach
 
