@@ -19,6 +19,20 @@
       {{$product-> name}}
     @endforeach
 
+    <form method="POST" action="/send-contact">
+
+        @if($errors->any())
+            <p>Error: {{ $errors->first() }} </p>
+        @endif
+
+        {{ csrf_field() }}
+        <input name="email"  type="email" placeholder="Enter email">
+        <input name="subject" type="text" placeholder="Enter subject">
+        <textarea name="description"></textarea>
+        <button>Send a message</button>
+
+    </form>
+
     <p> The current time is: {{ $currentTime }}</p>
 @endsection
 
