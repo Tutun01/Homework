@@ -19,6 +19,19 @@ class ContactController extends Controller
         return view("allContacts", compact('allContacts'));
     }
 
+    public function delete($contact)
+    {
+        $singleContact = ContactModel::where(['id' => $contact]) ->first();
+
+        if ($singleContact == null)
+        {
+            die("Contact don't exist");
+        }
+        $singleContact->delete();
+
+        return redirect()->back();
+    }
+
     public function sendContact(Request $request )
     {
         $request->validate([
