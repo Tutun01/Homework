@@ -12,16 +12,16 @@ class ProductsController extends Controller
         return view('add-product');
     }
 
-    public function getAllProducts()
-    {
-        $allProducts = ProductsModel::all(); // SELECT * FROM products
-        return view("allProducts", compact('allProducts'));
-    }
+   // public function getAllProducts()
+   // {
+   //     $allProducts = ProductsModel::all(); // SELECT * FROM products
+   //     return view("allProducts", compact('allProducts'));
+   // }
 
     public function addProduct(Request $request)
     {
         $request->validate([
-            "name" => "required|string", // if (isset($_POST['email'])) && is_string($_POST['email'])
+            "name" => "required|string|unique:products", // if (isset($_POST['email'])) && is_string($_POST['email'])
             "description" => "required|string|min:5",
             "amount" => "required|string",
             "price" => "required|string",
@@ -42,9 +42,7 @@ class ProductsController extends Controller
             "updated_at" => $request->get("updated_at"),
         ]);
 
-        return redirect("/admin/add-product");
-
-
+        return redirect()->route("allProducts");
 
     }
 }
