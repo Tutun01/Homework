@@ -11,7 +11,7 @@
                 <a class="nav-link" href="/shop">Shop</a>
                 <a class="nav-link" href="/contact">Contact</a>
                 <a class="nav-link" href="/admin/add-product">Add-Product</a>
-                <a class="nav-link" href="/admin/products">Products List</a>
+                <a class="nav-link" href="/admin/all-products">Products List</a>
             </div>
         </div>
     </div>
