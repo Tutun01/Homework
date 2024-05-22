@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShopController;
+use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::view("/about", "about");
@@ -17,7 +18,7 @@ Route::get("/contact", [ContactController::class, 'index']);
 //Route::view("/contact", "contact");
 
 
-Route::middleware('auth')->prefix("admin")->group(function (){
+Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function (){
 
     Route::get("/all-contacts", [ContactController::class, "getAllContacts"]);
 

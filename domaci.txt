@@ -1,0 +1,9 @@
+
+
+Napraiti stranicu "/admin/products"
+    * Prikazati sve proizvode iz baze i sve njihove informacije u HTML tabeli
+
+______________________-
+
+ * Edit product
+ * Edit contact
