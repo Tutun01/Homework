@@ -20,6 +20,7 @@ Route::get("/contact", [ContactController::class, 'index']);
 
 Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function (){
 
+
     Route::get("/all-contacts", [ContactController::class, "getAllContacts"]);
 
     Route::get("/delete-contact/{contact}", [ContactController::class, "delete"])
@@ -39,15 +40,12 @@ Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group
         ->name("allProducts");
 
     Route::get("/delete-product/{product}", [ProductController::class, "delete"])
-
         ->name("deleteProduct");
 
     Route::get("/product/edit/{product}", [ProductController::class, "singleProduct"])
-
         ->name("product.single");
 
     Route::post("/product/save/{id}", [ProductController::class, "edit"])
-
         ->name("product.save");
 
 });
