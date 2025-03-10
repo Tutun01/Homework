@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductsModel;
+use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    private $productRepo;
+
+    public function __construct()
+    {
+        $this->productRepo= new ProductRepository();
+    }
     public function index()
     {
         $allProducts = ProductsModel::all();
@@ -15,7 +22,7 @@ class ProductController extends Controller
 
     public function delete($product)
     {
-        $singleProduct = ProductsModel::where(['id' => $product]) ->first();
+        $singleProduct = $this->productRepo->getProductById($product);
 
         if ($singleProduct == null)
         {
@@ -33,14 +40,7 @@ class ProductController extends Controller
 
     public function edit(Request $request, ProductsModel $product)
     {
-
-        $product->name = $request->get("name");
-        $product->description = $request->get("description");
-        $product->amount = $request->get("amount");
-        $product->price = $request->get ("price");
-        $product->save();
-
+        $this->productRepo->editProduct($product, $request);
         return redirect()->back();
-
     }
 }

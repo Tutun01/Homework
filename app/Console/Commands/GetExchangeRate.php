@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\ExchangeRates;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -26,29 +28,22 @@ class GetExchangeRate extends Command
      */
     public function handle()
     {
-        $url = env("API_URL")."/fetch-multi";
-        $response = Http::get($url, [
-            'from' => 'RSD',
-            'to' => 'EUR, USD',
-            'api_key' => env("API_KEY"),
-        ]);
 
-        $data = $response->json();
 
-        if (isset($data['results']))
+        foreach (ExchangeRates::AVAILABLE_CURRENCY as $currency)
         {
-            $EURRate = $data['results']['EUR'];
-            $USDRate = $data['results']['USD'];
+            $todayCurrency = ExchangeRates::getCurrencyForToday($currency);
 
-            if ($EURRate && $USDRate)
+            if ($todayCurrency !== null)
             {
-                $EURRate = round(1 / $EURRate, 2);
-                $USDRate = round(1 / $USDRate, 2);
+                continue;
             }
 
-            $this->info('Current exchange rate:');
-            $this->line("EUR: $EURRate RSD");
-            $this->line("USD: $USDRate RSD");
+        $response = Http::get("https://kurs.resenje.org/api/v1/currencies/$currency/rates/today");
+        ExchangeRates::create([
+            'currency' => $currency,
+            'value' => $response->json()["exchange_middle"]
+        ]);
         }
     }
 }
