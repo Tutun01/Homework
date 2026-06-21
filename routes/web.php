@@ -26,7 +26,8 @@ Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group
     Route::get("/delete-contact/{contact}", [ContactController::class, "delete"])
         ->name("deleteContact");
 
-    Route::post("/send-contact", [ContactController::class, 'sendContact']);
+    Route::post("/send-contact", [ContactController::class, 'sendContact'])
+        ->name('sendContact');
 
 
     Route::get("/add-product", [ProductsController::class, 'index']);
@@ -45,7 +46,7 @@ Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group
     Route::get("/product/edit/{product}", [ProductController::class, "singleProduct"])
         ->name("product.single");
 
-    Route::post("/product/save/{id}", [ProductController::class, "edit"])
+    Route::post("/product/save/{product}", [ProductController::class, "edit"])
         ->name("product.save");
 
 });
