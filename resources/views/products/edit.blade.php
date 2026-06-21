@@ -5,7 +5,7 @@
 @endsection
 
 @section("pageContent")
-    <form method="post" action= "{{ route("product.save", ['product' => $product->id])}}">
+    <form method="post" action="{{ route("product.save", $product->id) }}">
 
         {{csrf_field()}}
 

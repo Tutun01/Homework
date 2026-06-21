@@ -13,6 +13,7 @@
 
     @endforeach
 
+    <p>Contact successfully added!</p>
 
 @endsection
 
