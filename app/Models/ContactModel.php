@@ -10,6 +10,6 @@ class ContactModel extends Model
    protected $table = "contact";
 
    protected $fillable = [
-       "email", "subject", "message"
+       "email", "subject", "description"
    ];
 }

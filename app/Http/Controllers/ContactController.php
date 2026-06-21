@@ -3,11 +3,21 @@
 namespace App\Http\Controllers;
 
 // require_once "Illuminate\Http\Request;"
+use App\Http\Requests\SaveContactRequest;
 use App\Models\ContactModel;
+use App\Repositories\ContactRepository;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+
+    private $contactRepo;
+
+    public function __construct()
+    {
+        $this->contactRepo = new ContactRepository();
+    }
+
     public function index()
     {
         return view("contact");
@@ -32,22 +42,10 @@ class ContactController extends Controller
         return redirect()->back();
     }
 
-    public function sendContact(Request $request )
+    public function sendContact(SaveContactRequest $request )
     {
-        $request->validate([
-            "email" => "required|string", // if (isset($_POST['email'])) && is_string($_POST['email'])
-            "subject" => "required|string",
-            "description" => "required|string|min:5"
-         ]);
-
-
-        ContactModel::create([
-            "email" => $request->get("email"),
-            "subject" => $request->get("subject"),
-            "message" => $request->get("description")
-         ]);
+        $this->contactRepo->createNewContact($request);
 
         return redirect("/shop");
-
     }
 }
