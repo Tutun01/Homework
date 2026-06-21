@@ -24,8 +24,6 @@ class ProductsController extends Controller
 
     public function addProduct(SaveProductRequest $request)
     {
-
-
         $this->productRepo->createNew($request);
 
         return redirect()->route("allProducts");

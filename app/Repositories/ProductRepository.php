@@ -37,6 +37,7 @@ class ProductRepository
         $product->description = $request->get("description");
         $product->amount = $request->get("amount");
         $product->price = $request->get ("price");
+        $product->image = $request->get("image") ?? $product->image;
         $product->save();
     }
 }
