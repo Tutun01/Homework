@@ -14,13 +14,13 @@ Route::view("/about", "about");
 Route::get("/welcome", [HomepageController::class, 'index']);
 Route::get("/shop", [ShopController::class, 'index']);
 
-Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function (){
+Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("/admin")->group(function (){
 
-    Route::controller(ContactController::class)->group(function () {
+    Route::controller(ContactController::class)->prefix("/contact")->group(function () {
         Route::get("/contact", "index");
-        Route::get("/contact/all", "getAllContacts");
-        Route::post("/contact/send", "sendContact")->name("sendContact");
-        Route::get("/contact/delete/{contact}", "delete")->name("deleteContact");
+        Route::get("/all", "getAllContacts");
+        Route::get("/delete/{contact}", "delete")->name("deleteContact");
+        Route::post("/send", "sendContact")->name("sendContact");
     });
 
     Route::controller(ProductsController::class)->group(function (){
