@@ -22,9 +22,9 @@ class SaveContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "email" => "required|string", // if (isset($_POST['email'])) && is_string($_POST['email'])
-            "subject" => "required|string",
-            "description" => "required|string|min:5"
+            "email" => "required|email", // if (isset($_POST['email'])) && is_string($_POST['email'])
+            "subject" => "required|string|max:128",
+            "description" => "required|string|min:5|max:500"
         ];
     }
 }
