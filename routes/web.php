@@ -14,41 +14,23 @@ Route::view("/about", "about");
 Route::get("/welcome", [HomepageController::class, 'index']);
 Route::get("/shop", [ShopController::class, 'index']);
 
-Route::get("/contact", [ContactController::class, 'index']);
-//Route::view("/contact", "contact");
-
-
 Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("admin")->group(function (){
 
+    Route::controller(ContactController::class)->group(function () {
+        Route::get("/contact", "index");
+        Route::get("/contact/all", "getAllContacts");
+        Route::post("/contact/send", "sendContact")->name("sendContact");
+        Route::get("/contact/delete/{contact}", "delete")->name("deleteContact");
+    });
 
-    Route::get("/all-contacts", [ContactController::class, "getAllContacts"]);
-
-    Route::get("/delete-contact/{contact}", [ContactController::class, "delete"])
-        ->name("deleteContact");
-
-    Route::post("/send-contact", [ContactController::class, 'sendContact'])
-        ->name('sendContact');
-
-
-    Route::get("/add-product", [ProductsController::class, 'index']);
-
-
-    Route::post("/add-product", [ProductsController::class, 'addProduct'])
-        ->name("saveProduct");
-//Route::get("/admin/products", [\App\Http\Controllers\ProductsController::class, 'getAllProducts']);
-
-    Route::get("/all-products", [ProductController::class, 'index'])
-        ->name("allProducts");
-
-    Route::get("/delete-product/{product}", [ProductController::class, "delete"])
-        ->name("deleteProduct");
-
-    Route::get("/product/edit/{product}", [ProductController::class, "singleProduct"])
-        ->name("product.single");
-
-    Route::post("/product/save/{product}", [ProductController::class, "edit"])
-        ->name("product.save");
-
+    Route::controller(ProductsController::class)->group(function (){
+        Route::get("/add-product", "index");
+        Route::post("/add-product", "addProduct")->name("saveProduct");
+        Route::get("/all-products", "index")->name("allProducts");
+        Route::get("/delete-product/{product}", "delete")->name("deleteProduct");
+        Route::get("/product/edit/{product}", "singleProduct")  ->name("product.single");
+        Route::post("/product/save/{product}", "edit")->name("product.save");
+    });
 });
 
 require __DIR__.'/auth.php';
