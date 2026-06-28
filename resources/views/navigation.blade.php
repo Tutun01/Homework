@@ -9,9 +9,9 @@
                 <a class="nav-link active" aria-current="page" href="/welcome">Home</a>
                 <a class="nav-link" href="/about">About</a>
                 <a class="nav-link" href="/shop">Shop</a>
-                <a class="nav-link" href="/contact">Contact</a>
-                <a class="nav-link" href="/admin/add-product">Add-Product</a>
-                <a class="nav-link" href="/admin/all-products">Products List</a>
+                <a class="nav-link" href="{{ route('contact') }}"> Contact</a>
+                <a class="nav-link" href="{{ route('addProducts') }}">Add-Product</a>
+                <a class="nav-link" href="{{ route('allProducts') }}">Products List</a>
             </div>
         </div>
     </div>
