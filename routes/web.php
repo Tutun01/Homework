@@ -19,21 +19,27 @@ Route::middleware(["auth", AdminCheckMiddleware::class])->prefix("/admin")->grou
     Route::controller(ContactController::class)->prefix("/contact")->group(function () {
         Route::get("/contact", "index")->name("contact");
         Route::get("/all", "getAllContacts");
-        Route::get("/delete/{contact}", "delete")->name("deleteContact");
-        Route::post("/send", "sendContact")->name("sendContact");
+        Route::name('contact.')->group(function (){
+            Route::get("/delete/{contact}", "delete")->name("delete");
+            Route::post("/send", "sendContact")->name("send");
+        });
+
     });
 
     Route::controller(ProductsController::class)->prefix("/products")->group(function (){
-        Route::get("/add-p", "addProducts")->name("addProducts");
-        Route::post("/add", "addProduct")->name("saveProduct");
-
+        Route::name('products.')->group(function (){
+            Route::get("/add-p", "addProducts")->name("add");
+            Route::post("/add", "addProduct")->name("save");
+        });
     });
 
     Route::controller(ProductController::class)->group(function () {
-        Route::get("/all",'index')->name("allProducts");
-        Route::get("/delete/{product}","delete")->name("deleteProduct");
-        Route::get("/edit/{product}","singleProduct")->name("product.single");
-        Route::post("/save/{product}","edit")->name("product.save");
+        Route::name('product.')->group(function (){
+            Route::get("/all",'index')->name("all");
+            Route::get("/delete/{product}","delete")->name("delete");
+            Route::get("/edit/{product}","singleProduct")->name("single");
+            Route::post("/save/{product}","edit")->name("save");
+        });
     });
 
 });

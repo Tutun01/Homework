@@ -26,7 +26,7 @@ class ProductsController extends Controller
     {
         $this->productRepo->createNew($request);
 
-        return redirect()->route("allProducts");
+        return redirect()->route("product.all");
 
     }
 }

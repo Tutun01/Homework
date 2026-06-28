@@ -19,7 +19,7 @@
       {{$product-> name}}
     @endforeach
 
-    <form method="POST" action="{{ route("sendContact") }}">
+    <form method="POST" action="{{ route("contact.send") }}">
 
         @if($errors->any())
             <p>Error: {{ $errors->first() }} </p>

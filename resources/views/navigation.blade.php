@@ -10,8 +10,8 @@
                 <a class="nav-link" href="/about">About</a>
                 <a class="nav-link" href="/shop">Shop</a>
                 <a class="nav-link" href="{{ route('contact') }}"> Contact</a>
-                <a class="nav-link" href="{{ route('addProducts') }}">Add-Product</a>
-                <a class="nav-link" href="{{ route('allProducts') }}">Products List</a>
+                <a class="nav-link" href="{{ route('products.add') }}">Add-Product</a>
+                <a class="nav-link" href="{{ route('product.all') }}">Products List</a>
             </div>
         </div>
     </div>

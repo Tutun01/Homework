@@ -5,7 +5,7 @@
 @endsection
 
 @section("pageContent")
-<form method="POST" action="{{ route("saveProduct") }}">
+<form method="POST" action="{{ route("products.save") }}">
 
     @if($errors->any())
         <p>Error: {{ $errors->first() }} </p>

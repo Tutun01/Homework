@@ -1,7 +1,7 @@
 @extends("layout")
 
 @section("pageContent")
-    <form method="POST" action="{{ route('sendContact') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('contact.send') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
