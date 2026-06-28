@@ -40,7 +40,7 @@ class ProductController extends Controller
 
     public function edit(Request $request, ProductsModel $product)
     {
-        $this->productRepo->editProduct($request, $product);
+        $this->productRepo->edit($request, $product);
         return redirect()->route('allProducts');
     }
 }
