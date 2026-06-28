@@ -16,7 +16,7 @@ class ProductsController extends Controller
     {
         $this->productRepo= new ProductRepository();
     }
-    public function index ()
+    public function addProducts ()
     {
         return view('add-product');
     }

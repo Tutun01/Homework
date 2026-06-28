@@ -31,7 +31,7 @@ class ProductRepository
         return $this->productModel->where(['id' => $id])->first();
     }
 
-    public function editProduct($request, $product)
+    public function edit($request, $product)
     {
         $product->name = $request->get("name");
         $product->description = $request->get("description");
